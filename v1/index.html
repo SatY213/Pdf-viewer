@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modular PDF Viewer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf_viewer.min.css"
+    />
+
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <div class="controls">
+        <div class="page-navigation">
+          <button id="prev" class="nav-button">Previous</button>
+          <span
+            ><span id="page_num">1</span> / <span id="page_count">1</span></span
+          >
+          <button id="next" class="nav-button">Next</button>
+        </div>
+        <div class="zoom-controls">
+          <button id="zoom_in" class="zoom-button">+</button>
+          <button id="zoom_out" class="zoom-button">-</button>
+        </div>
+      </div>
+      <div class="upload-container">
+        <span class="file-name"></span>
+        <label for="uploadPdf" class="upload-button">Upload PDF</label>
+        <input type="file" id="uploadPdf" accept="application/pdf" />
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="thumbnail-header">
+          <div class="item" style="background-color: #008c91cc; color: white">
+            <span><i class="fas fa-file-alt"></i></span>File
+          </div>
+          <div class="item">
+            <span><i class="fas fa-copy"></i></span>Notes
+          </div>
+        </div>
+        <div class="thumbnail-container" id="thumbnailContainer"></div>
+      </div>
+
+      <!-- Main PDF Viewer -->
+      <div class="pdf_global_container">
+        <div class="pdf-viewer" id="viewer">
+          <canvas id="pdfCanvas" class="pdf-canvas"> </canvas>
+          <div class="textLayer"></div>
+          <div class="loading-spinner" id="loadingPage"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="scripts/main.js"></script>
+  </body>
+</html>
+<!-- // function showCopyButton(range) {
+    //   const copyButton = document.getElementById("copyButton");
+    //   const rect = range.getBoundingClientRect();
+
+    //   copyButton.style.top = `${rect.bottom + window.scrollY}px`;
+    //   copyButton.style.left = `${rect.left + window.scrollX}px`;
+    //   copyButton.style.display = "block";
+
+    //   copyButton.onclick = () => {
+    //     navigator.clipboard.writeText(range.toString());
+    //     copyButton.style.display = "none";
+    //   };
+    // } -->

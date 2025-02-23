@@ -1,0 +1,337 @@
+/* ===== Global Styles ===== */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ===== Header ===== */
+.header {
+  height: 60px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ===== Content Container ===== */
+.content {
+  /* background-color: rgba(0, 140, 145, 0.14); */
+  background-color: #e5e5e5;
+
+  align-items: center;
+  justify-content: center;
+  overflow: scroll !important;
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+  flex-grow: 1;
+
+  width: calc(100% - 220px); /* Account for the sidebar */
+  margin-left: 220px; /* Shift it to the right */
+}
+/* ===== Upload File Container ===== */
+.upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
+  justify-content: flex-end;
+}
+
+.upload-container input[type="file"] {
+  display: none;
+}
+
+.upload-container .upload-button {
+  border-radius: 10px;
+  padding: 7px 15px;
+  background-color: #008c91cc;
+  color: white;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  box-shadow: 0 0px 3px 0.1px rgba(0, 0, 0, 0.034);
+}
+.highlight {
+  background-color: rgba(0, 140, 255, 0.4);
+  border-radius: 4px;
+  padding: 2px;
+}
+
+#copyButton {
+  display: none;
+  position: absolute;
+  background: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.upload-container .upload-button:hover {
+  background-color: #008c91e8;
+}
+
+.upload-container .file-name {
+  font-size: 14px;
+  color: #333;
+}
+
+/* ===== Controls (Page Navigation and Zoom) ===== */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: black;
+  font-size: 12px;
+  font-weight: 500;
+  width: 50%;
+}
+
+.controls .page-navigation,
+.controls .zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.controls .page-navigation button,
+.controls .zoom-controls button {
+  border-radius: 10px;
+  padding: 7px 15px;
+  background-color: #5050501f;
+  color: #3f3f3f;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.controls .page-navigation button {
+  width: 70px;
+}
+
+.controls .zoom-controls button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.controls .page-navigation button:hover,
+.controls .zoom-controls button:hover {
+  background-color: #5050503a;
+}
+
+/* ===== Sidebar (Thumbnails) ===== */
+.sidebar {
+  width: 220px;
+  height: calc(100vh - 60px); /* Adjust height to exclude header */
+  border-right: 1px solid #e5e7eb;
+  background-color: #f9f9f9;
+  padding: 10px;
+  position: fixed;
+  top: 60px; /* Ensure it starts below the header */
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.sidebar h3 {
+  text-align: center;
+  color: #3f3f3f;
+  font-size: 16px;
+}
+.sidebar .thumbnail-header {
+  display: flex;
+  gap: 10px;
+  background-color: #e5e5e5;
+  padding: 7px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  margin-bottom: 5px;
+  border-radius: 15px;
+}
+.sidebar .thumbnail-header .item {
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  gap: 5px;
+  border-radius: 8px;
+  background-color: white;
+  padding: 6px 12px;
+  width: 70px;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.sidebar .thumbnail-header .item:hover {
+  background-color: #f9f9f9;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+.sidebar .thumbnail-header span {
+  font-size: 14px;
+}
+/* */
+
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 6px;
+  overflow-y: auto;
+}
+
+.thumbnail {
+  position: relative;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e5e5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 140px;
+  margin: 0 auto;
+}
+.thumbnail:hover {
+  box-shadow: 0 0px 0px 2px #008c91cc; /* Shadow on hover */
+}
+
+/* 7 15 */
+.thumbnail .loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ===== Main PDF Viewer ===== */
+.pdf_global_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  overflow: auto;
+}
+
+.pdf-viewer {
+  position: relative;
+}
+
+.pdf-viewer canvas {
+  margin-top: 10px;
+  width: auto;
+  height: auto;
+  display: block; /* Prevent weird inline scaling */
+}
+
+.textLayer {
+  position: absolute;
+  /* pointer-events: none; */
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.textLayer span {
+  pointer-events: all;
+  user-select: text;
+}
+
+/* Loading Spinner */
+.pdf-viewer .loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+.text-container {
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+#selectable-text {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.highlight {
+  background-color: rgba(0, 140, 255, 0.3);
+  border-radius: 4px;
+}
+
+.water-drop-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #007aff;
+  border-radius: 50%;
+  cursor: grab;
+  display: none;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

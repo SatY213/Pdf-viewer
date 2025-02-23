@@ -1,0 +1,10 @@
+/pdf-viewer/
+  ├── index.html
+  ├── styles/
+  │     └── index.css
+  ├── scripts/
+  │     ├── main.js
+  │     ├── pdfRenderer.js
+  │     ├── thumbnailGenerator.js
+  │     ├── eventHandlers.js
+  │     └── textLayerRenderer.js
